@@ -1,0 +1,32 @@
+\vspace{-0.25in}
+\begin{block}{Chapman Reactions}
+\vspace{-0.2in}
+\begin{align}
+\mathrm{O_2} + \gamma &\rightarrow \mathrm{O}  + \mathrm{O} \tag*{molecular oxygen photolysis} \\
+\mathrm{O} + \mathrm{O_2} + \mathrm{M} &\rightarrow \mathrm{O_3}  + \mathrm{M} \tag*{ozone creation} \\
+\mathrm{O_3} + \gamma &\rightarrow \mathrm{O}  + \mathrm{O_2} \tag*{ozone photolysis (Chappuis)} \\
+                      &\rightarrow \mathrm{O^*}  + \mathrm{O_2} \tag*{ozone photolysis (Hartley)} \\
+\mathrm{O^*} + \mathrm{M} &\rightarrow \mathrm{O}  + \mathrm{M} \tag*{atomic oxygen quenching} \\
+\mathrm{O} + \mathrm{O_3} &\rightarrow \mathrm{O_2}  + \mathrm{O_2} \tag*{ozone destruction}
+\end{align}
+\end{block}
+% \vspace{-0.05in}
+% {\it \small micm/examples/configs/chapman/reactions.json} \\
+% \vspace{-0.15in}
+\begin{block}{Chapman Species}
+\begin{tabular}{|c|c||c|c|}
+\hline
+$\mathrm{O_2}$ & molecular oxygen
+& $\mathrm{O}$ & atomic oxygen, ground state \\
+$\mathrm{O_3}$ & ozone
+& $\mathrm{O^*}$ & atomic oxygen, excited state \\
+\hline
+$\mathrm{M}$ & air molecule &
+$\gamma$ & UV photon \\
+\hline
+\end{tabular}
+\end{block}
+\vspace{-0.05in}
+% {\it \small micm/examples/configs/chapman/species.json}
+{\small The Chappuis and Hartley branches are typically combined,
+and $\mathrm{O^*}$ omitted from the mechanism.}

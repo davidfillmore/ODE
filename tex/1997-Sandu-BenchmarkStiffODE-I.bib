@@ -1,0 +1,14 @@
+@article{SANDU19973151,
+title = {Benchmarking stiff ode solvers for atmospheric chemistry problems-I. implicit vs explicit},
+journal = {Atmospheric Environment},
+volume = {31},
+number = {19},
+pages = {3151-3166},
+year = {1997},
+note = {EUMAC: European Modelling of Atmospheric Constituents},
+issn = {1352-2310},
+doi = {https://doi.org/10.1016/S1352-2310(97)00059-9},
+url = {https://www.sciencedirect.com/science/article/pii/S1352231097000599},
+author = {A. Sandu and J.G. Verwer and M. {Van Loon} and G.R. Carmichael and F.A. Potra and D. Dabdub and J.H. Seinfeld},
+abstract = {In many applications of atmospheric transport-chemistry problems, a major task is the numerical integration of the stiff systems of ordinary differential equations describing the chemical transformations. This paper presents a comprehensive numerical comparison between five dedicated explicit and four implicit solvers for a set of seven benchmark problems from actual applications. The implicit solvers use sparse matrix techniques to economize on the numerical linear algebra overhead. As a result they are often more efficient than the dedicated explicit ones, particularly when approximately two or more figures of accuracy are required. In most test cases, sparse RODAs, a Rosenbrock solver, came out as most competitive in the 1% error region. Of the dedicated explicit solvers, TWOSTEP came out as best. When less than 1% accuracy is aimed at, this solver performs very efficiently for tropospheric gas-phase problems. However, like all other dedicated explicit solvers, it cannot efficiently deal with gas-liquid phase chemistry. The results presented may constitute a guide for atmospheric modelers to select a suitable integrator based on the type and dimension of their chemical mechanism and on the desired level of accuracy. Furthermore, we would like to consider this paper an open invitation for other groups to add new representative test problems to those described here and to benchmark their numerical algorithms in our standard computational environment.}
+}

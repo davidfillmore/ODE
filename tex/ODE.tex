@@ -1,0 +1,83 @@
+\documentclass{beamer}
+
+\usepackage{mathtools}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage[export]{adjustbox}
+\usepackage{chemformula}
+
+\usetheme{PaloAlto}
+\usecolortheme{whale}
+
+\setbeamertemplate{navigation symbols}{}
+
+\title[MUSICA ODEs]{Overview of the \\
+MUSICA
+\footnote{Multi-Scale Infrastructure for Chemistry and Aerosols}
+MICM
+\footnote{Model-Independent Chemistry Module}
+Library}
+
+\author[Fillmore]{David Fillmore \\
+\vspace{0.05in}
+{\small \underline{ACOM
+\footnote{Atmospheric Chemistry, Observations, and Modeling}
+ MUSICA Group}}}
+
+\vspace{-0.35in}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Chapman ODE Example}
+
+\begin{frame}
+\frametitle{Chapman Mechanism}
+\include{chapman}
+\end{frame}
+
+\begin{frame}
+\frametitle{Chapman ODEs}
+\include{chapman_ode}
+\end{frame}
+
+\begin{frame}
+\frametitle{3D and 2D Chapman Systems}
+\include{chapman_3d_2d}
+\end{frame}
+
+\section{MICM Interface}
+\begin{frame}
+\include{chapman_config_photo}
+\end{frame}
+
+\begin{frame}
+\include{chapman_config_create}
+\end{frame}
+
+\begin{frame}
+\include{chapman_python}
+\end{frame}
+
+\section{Phase Portraits}
+\begin{frame}
+\include{linear_nonlinear}
+\end{frame}
+
+\section{Backward Euler Solver}
+
+\section{Rosenbrock Solver}
+
+\nocite{SanduI}
+\nocite{SanduII}
+\nocite{ODEsI}
+\nocite{ODEsII}
+
+\section{Bibliography}
+\begin{frame}[allowframebreaks]{Bibliography}
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{frame}
+
+\end{document}

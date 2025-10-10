@@ -1,0 +1,65 @@
+\begin{columns}
+\begin{column}{0.47\textwidth}
+\vspace{-0.34in}
+\begin{block}{Nonlinear Systems}
+\begin{equation*}
+\frac{d \mathbf{x}}{dt}
+= \mathbf{F} \left( \mathbf{x}, t \right)
+\end{equation*}
+\begin{equation*}
+\frac{dx_i}{dt}
+= F_i \left( x_j, t \right)
+\end{equation*}
+% \begin{equation*}
+% J_{ij} = \frac{\partial F_i}{\partial x_j}
+% \end{equation*}
+\end{block}
+\vspace{-0.14in}
+\end{column}
+\begin{column}{0.47\textwidth}
+\vspace{-0.34in}
+\begin{block}{Linear Systems}
+\begin{equation*}
+\frac{d \mathbf{x}}{dt}
+= \mathbf{s} \left( t \right) + L \left( t \right) \mathbf{x}
+\end{equation*}
+\begin{equation*}
+\frac{dx_i}{dt}
+= s_i \left( t \right) + \sum_{j=0}^N L_{ij} \left( t \right) x_j
+\end{equation*}
+\end{block}
+\end{column}
+\end{columns}
+\vspace{-0.06in}
+\begin{block}{Quadratic Systems}
+\vspace{-0.2in}
+\begin{equation*}
+\frac{dx_i}{dt}
+= s_i \left( t \right) + \sum_{j=0}^N L_{ij} \left( t \right) x_j
++ \frac{1}{2} \sum_{j=0}^N \sum_{k=0}^N Q_{ijk} \left( t \right) x_j x_k,
+\ \ Q_{ikj} = Q_{ijk}
+\end{equation*}
+\end{block}
+% \begin{block}{
+% Power Series Expansion of $\mathbf{F} \left( \mathbf{x} + \mathbf{h} \right)$}
+% \vspace{-0.22in}
+% \begin{align*}
+% F_i \left( x_j + h_j \right) = F_i \left( x_j \right)
+% + \sum_{j=0}^N \frac{\partial F_i}{\partial x_j} h_j
+% + \frac{1}{2} \sum_{j=0}^N \sum_{k=0}^N
+% \frac{\partial F_i}{\partial x_j \partial x_k} h_j h_k
+% + \cdots
+% \end{align*}
+% \end{block}
+\vspace{-0.08in}
+\begin{exampleblock}{Phase Space
+[{\it Nonlinear Dynamics and Chaos}, Strogatz (2024)]}
+\begin{itemize}
+\item $\mathbf{x}$ a point in state space $\mathcal{M}, \dim{\mathcal{M} = N} $.
+\item $\mathbf{F} \left( \mathbf{x}, t \right)$
+a (time-dependent) vector field on $\mathcal{M}$.
+\item $\mathbf{x} \left( \mathbf{x}_0, t \right)$
+trajectories with initial conditions
+$\mathbf{x} \left( \mathbf{x}_0, t_0 \right) = \mathbf{x}_0$.
+\end{itemize}
+\end{exampleblock}

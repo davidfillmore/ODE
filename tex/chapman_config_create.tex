@@ -1,0 +1,44 @@
+\begin{columns}
+\begin{column}{0.47\textwidth}
+\vspace{-0.33in}
+\begin{block}{Ozone Creation}
+\begin{minted}{json}
+"name": "Chapman",
+"type": "MECHANISM",
+"reactions": [{
+  "type": "ARRHENIUS",
+  "reactants": {
+    "O": {},
+    "O2": {}
+  },
+  "products": {
+    "O3": {}
+  },
+  "A": 1e-16,
+  "MUSICA name":
+    "ozone creation"
+},
+\end{minted}
+\end{block}
+\end{column}
+\begin{column}{0.47\textwidth}
+\vspace{0.04in}
+\begin{block}{Ozone Destruction}
+\begin{minted}{json}
+{
+  "type": "ARRHENIUS",
+  "reactants": {
+    "O": {},
+    "O3": {}
+  },
+  "products": {
+    "O2": {"yield": 2}
+  },
+  "A": 1e-15,
+  "MUSICA name":
+    "ozone destruction"
+},
+\end{minted}
+\end{block}
+\end{column}
+\end{columns}

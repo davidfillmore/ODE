@@ -1,0 +1,43 @@
+\begin{columns}
+\begin{column}{0.47\textwidth}
+\vspace{-0.25in}
+\begin{block}{Molecular Oxygen Photolysis}
+\begin{minted}{json}
+{
+  "type": "PHOTOLYSIS",
+  "reactants": {
+    "O2": {}
+  },
+  "products": {
+    "O": {"yield": 2}
+  },
+  "MUSICA name":
+    "molecular oxygen
+     photolysis"
+},
+\end{minted}
+\end{block}
+\end{column}
+\begin{column}{0.47\textwidth}
+\vspace{-0.25in}
+\begin{block}{Ozone Photolysis}
+\begin{minted}{json}
+{
+  "type": "PHOTOLYSIS",
+  "reactants": {
+    "O3": {}
+  },
+  "products": {
+    "O": {},
+    "O2": {}
+  },
+  "MUSICA name":
+    "ozone photolysis"
+}]
+\end{minted}
+\end{block}
+\end{column}
+\end{columns}
+\vspace{0.1in}
+\small{Note photolysis rates typically vary with time and
+are not specified in the configuration.}

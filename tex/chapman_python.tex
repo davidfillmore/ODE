@@ -1,0 +1,20 @@
+\vspace{-0.27in}
+\begin{block}{Python Interface}
+\begin{minted}{python}
+import musica
+
+solver = musica.create_solver('configs/chapman',
+    musica.micmsolver.rosenbrock, num_grid_cells)
+
+n = 1e17 # molecules cm-3, lower stratosphere
+# 0, 02, 03, rate ordering details omitted
+concentrations = [1e-10 * n, 0.21 * n, 1e-5 * n]
+rate_constants = {
+    'PHOTO.molecular oxygen photolysis': 1e-10,
+    'PHOTO.ozone photolysis': 1e-3}
+
+musica.micm_solve(solver, time_step,
+    temperature, pressure, air_density,
+    concentrations, rate_constants)
+\end{minted}
+\end{block}
