@@ -106,3 +106,11 @@ Robustness fix: `ProcessSet::SetJacobianFlatIds` skips `VectorIndex(...)` lookup
 | `include/micm/constraint/constraint.hpp` | Constraint variant |
 | `include/micm/constraint/constraint_set.hpp` | Constraint set |
 | `include/micm/constraint/equilibrium_constraint.hpp` | Equilibrium impl |
+
+## External Anchors for Paper Claims
+
+1. MICM docs and citation guidance: https://ncar.github.io/micm/
+2. Recommended MICM scientific citation (JAMES): https://doi.org/10.1029/2024MS004581
+3. Archived MICM software versions (Zenodo concept DOI): https://doi.org/10.5281/zenodo.7940162
+4. Recent release artifact used for reproducibility pinning: https://zenodo.org/records/14758889
+5. DAE Rosenbrock theory references linked in `notes/references.md` (Roche 1988; Hairer and Wanner 1996).

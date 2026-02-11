@@ -1,0 +1,25 @@
+\section{Benchmark Design and Results}
+\label{sec:benchmarks}
+
+This section will report accuracy-cost behavior for selected stiff atmospheric chemistry and DAE-focused problems.
+
+\subsection{Protocol}
+\begin{itemize}[leftmargin=*]
+  \item Define reference solutions, norms, and tolerances.
+  \item Record wall-clock time, accepted steps, rejected steps, and linear solves.
+  \item Report compiler, platform, and MICM version metadata.
+\end{itemize}
+
+\subsection{Benchmark Set}
+\begin{itemize}[leftmargin=*]
+  \item Atmospheric chemistry baseline cases from the Sandu benchmark lineage \citep{sandu1997implicit,sandu1997rosenbrock}.
+  \item DAE-focused constrained systems representative of MICM's current equilibrium pathway.
+  \item Step-size controller sensitivity experiments following \citet{liao2025}.
+\end{itemize}
+
+\subsection{Planned Outputs}
+\begin{itemize}[leftmargin=*]
+  \item Error-vs-cost curves for 3-, 4-, and 6-stage parameter sets.
+  \item Solver-state diagnostics (accept/reject patterns and stiffness indicators).
+  \item Reproducibility table with artifact identifiers.
+\end{itemize}

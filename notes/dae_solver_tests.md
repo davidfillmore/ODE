@@ -78,3 +78,24 @@ Source: `~/EarthSystem/MICM/test/`
 - Temperature-dependent K_eq
 - Higher-index DAE systems
 - Constraint types other than EquilibriumConstraint
+
+## Paper-Critical Benchmark Additions (Planned)
+
+1. **Atmospheric stiff ODE benchmarks (Sandu 1997 I/II):**
+   - Reproduce at least one gas-phase benchmark setup used in Atmospheric Environment 31(19/20).
+   - Report error-vs-cost curves with MICM's 3/4/6-stage Rosenbrock variants.
+2. **Index-1 DAE regression suite:**
+   - Add canonical index-1 algebraic examples beyond equilibrium chemistry toy systems.
+   - Include failure-mode checks for inconsistent initial conditions.
+3. **Step-size controller stress test (Liao et al., 2025):**
+   - Evaluate sensitivity of accepted step count and global error to linear-system treatment.
+   - Compare current controller behavior to recommendations from KPP-focused analysis.
+4. **Versioned reproducibility harness:**
+   - Pin MICM release DOI and compiler settings in test metadata.
+   - Emit machine-readable benchmark summaries for manuscript tables.
+
+## Citation Links for This Test Roadmap
+
+- Sandu et al. (1997) I: https://doi.org/10.1016/S1352-2310(97)00059-9
+- Sandu et al. (1997) II: https://doi.org/10.1016/S1352-2310(97)83212-8
+- Liao et al. (2025): https://doi.org/10.5194/gmd-18-4273-2025

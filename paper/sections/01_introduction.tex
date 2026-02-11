@@ -1,0 +1,16 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Atmospheric chemistry integration is often stiff and can include algebraic structure from equilibrium or diagnostic constraints. These properties motivate linearly implicit methods that remain robust at practical time steps. Rosenbrock-family methods have a long track record in stiff systems \citep{kaps1979,hairerwanner1996}, and atmospheric benchmark studies have repeatedly used them as reference methods \citep{sandu1997implicit,sandu1997rosenbrock}.
+
+This manuscript focuses on the MICM implementation and the DAE-specific design choices used in its solver stack \citep{micm_repo,micm_docs,pfister2024micm}.
+
+\subsection{Paper Contributions}
+\begin{enumerate}[leftmargin=*]
+  \item A precise DAE formulation of the MICM constrained chemistry solve.
+  \item An implementation-level description of assembly, sparsity handling, and stage solves.
+  \item Verification and benchmark evidence tied to reproducible software versions.
+\end{enumerate}
+
+\subsection{Scope}
+This draft targets index-1 DAE behavior in MICM's current equilibrium-constraint pathway. Higher-index systems and non-equilibrium constraint classes are treated as future work.

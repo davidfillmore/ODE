@@ -1,0 +1,15 @@
+\section{Background and Related Work}
+\label{sec:background}
+
+\subsection{Rosenbrock Methods for Stiff Systems}
+Rosenbrock and Rosenbrock-W methods avoid full nonlinear solves by linearizing stage equations around the current state, while retaining stiff stability properties \citep{kaps1979,hairerwanner1996}. This makes them attractive for large chemistry systems with sparse Jacobians.
+
+\subsection{DAE Foundations}
+For index-1 systems, a common formulation is
+\begin{equation}
+  \mathbf{M}\,\dot{\mathbf{y}} = \mathbf{F}(\mathbf{y}, t),
+\end{equation}
+with a singular mass matrix for algebraic rows. Runge-Kutta and Rosenbrock treatments for DAEs are discussed in classic references \citep{hairerlubichroche1989,roche1988,hairerwanner1996}.
+
+\subsection{Atmospheric Chemistry Solver Benchmarks}
+Comparative atmospheric chemistry studies from the Sandu benchmark series remain a useful baseline for accuracy-cost analysis \citep{sandu1997implicit}. The Rosenbrock-focused extension in \citet{sandu1997rosenbrock} is directly relevant for this paper. Recent work has also revisited Rosenbrock step-size control behavior in chemistry mechanisms \citep{liao2025}.

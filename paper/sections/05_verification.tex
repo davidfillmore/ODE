@@ -1,0 +1,21 @@
+\section{Verification and Test Evidence}
+\label{sec:verification}
+
+Current MICM tests cover constraint residual assembly, Jacobian row replacement, reordered-state execution, stiff coupling, and selected conservation checks for equilibrium constraints.
+
+\subsection{Existing Coverage}
+\begin{itemize}[leftmargin=*]
+  \item Unit tests for `ConstraintSet` API and sparsity behavior.
+  \item Unit tests for Rosenbrock error normalization with constrained rows.
+  \item Integration tests for multi-stage DAE parameter sets and coupled constraints.
+\end{itemize}
+
+\subsection{Known Gaps}
+\begin{itemize}[leftmargin=*]
+  \item No canonical Robertson-style DAE benchmark in the current suite.
+  \item No temperature-dependent $K_{\mathrm{eq}}$ validation path.
+  \item No higher-index DAE coverage.
+\end{itemize}
+
+\subsection{Planned Additions for This Paper}
+Benchmark additions are aligned with atmospheric chemistry precedent \citep{sandu1997implicit,sandu1997rosenbrock} and modern Rosenbrock controller analysis \citep{liao2025}.

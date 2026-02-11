@@ -1,0 +1,28 @@
+\section{Implementation Details in MICM}
+\label{sec:implementation}
+
+This section documents the implementation path from solver build-time wiring to per-step runtime assembly in MICM \citep{micm_repo,micm_docs}.
+
+\subsection{Build-Time Pipeline}
+\begin{enumerate}[leftmargin=*]
+  \item Build kinetic process terms and baseline Jacobian sparsity.
+  \item Build constraint structures and identify algebraic row IDs.
+  \item Prune kinetic contributions to algebraic rows.
+  \item Merge constraint Jacobian sparsity into the global sparsity pattern.
+  \item Build species-sized solver matrices and mass-matrix diagonals.
+\end{enumerate}
+
+\subsection{Runtime Stage Assembly}
+Per accepted or rejected step, MICM assembles:
+\begin{enumerate}[leftmargin=*]
+  \item Forcing vector from kinetics plus constraint residual rows.
+  \item Jacobian from kinetics plus row-replacement constraint Jacobians.
+  \item Rosenbrock stage linear systems using $\alpha\mathbf{M}-\mathbf{J}$.
+\end{enumerate}
+
+\subsection{Implementation Notes to Expand}
+\begin{itemize}[leftmargin=*]
+  \item Add exact code references for `SolverBuilder`, `ProcessSet`, and `ConstraintSet`.
+  \item Add reordered-state mapping details and invariants.
+  \item Add scalar vs vectorized code-path parity checks.
+\end{itemize}

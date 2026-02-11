@@ -258,6 +258,10 @@ pythontex-files-*/
 # easy-todo
 *.lod
 
+## Project-specific TeX build outputs
+paper/main.pdf
+slides/ODE.pdf
+
 # xcolor
 *.xcp
 

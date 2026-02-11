@@ -1,0 +1,28 @@
+\section{MICM DAE Formulation}
+\label{sec:formulation}
+
+\subsection{Constrained Chemistry System}
+Let $\mathbf{y}\in\mathbb{R}^{N}$ be the species state. MICM combines kinetic forcing and algebraic constraints in a species-sized state, using a diagonal mass matrix:
+\begin{equation}
+  \mathbf{M}\,\dot{\mathbf{y}} = \mathbf{F}(\mathbf{y}) =
+  \begin{cases}
+    f_i(\mathbf{y}) & \text{for ODE rows,} \\
+    g_i(\mathbf{y}) & \text{for algebraic rows.}
+  \end{cases}
+\end{equation}
+For ODE rows, $M_{ii}=1$, and for algebraic rows, $M_{ii}=0$.
+
+\subsection{Equilibrium Constraints}
+The currently implemented constraint class uses equilibrium residuals of the form
+\begin{equation}
+  g(\mathbf{y}) = K_{\mathrm{eq}} \prod_{r \in \mathcal{R}} y_r^{\nu_r}
+  - \prod_{p \in \mathcal{P}} y_p^{\nu_p}.
+\end{equation}
+Each constraint replaces one target species row in the assembled system.
+
+\subsection{Linear Systems in Rosenbrock Stages}
+At each stage, MICM solves sparse linear systems of the form
+\begin{equation}
+  \left(\alpha \mathbf{M} - \mathbf{J}\right)\mathbf{k}^{(s)} = \mathbf{r}^{(s)},
+\end{equation}
+where $\mathbf{J}=\partial \mathbf{F}/\partial \mathbf{y}$. Section~\ref{sec:implementation} maps this mathematical form to implementation details.

@@ -1,58 +1,82 @@
-# References
+# References (Verified 2026-02-11)
 
-## Textbooks
+## Core Rosenbrock/DAE Theory
 
-### Hairer, Norsett & Wanner (1993) — ODEs I
-- **Title:** Solving Ordinary Differential Equations I: Nonstiff Problems
-- **Authors:** Ernst Hairer, Syvert Norsett, Gerhard Wanner
-- **Publisher:** Springer Verlag Series in Comput. Math., Vol. 8
-- **DOI:** 10.1007/978-3-540-78862-1
-- **BibTeX key:** `ODEsI`
+### Kaps & Rentrop (1979) — Rosenbrock W-methods for stiff ODEs
+- **Title:** Generalized Runge-Kutta methods of order four with stepsize control for stiff ordinary differential equations
+- **Authors:** P. Kaps, P. Rentrop
+- **Journal:** Numerische Mathematik, 33, 55-68
+- **DOI:** 10.1007/BF01396495
+- **Use in paper:** Historical linearly-implicit Rosenbrock foundation and adaptive control context.
 
-### Hairer & Wanner (1996) — ODEs II
+### Hairer, Lubich & Roche (1989) — Runge-Kutta/DAE foundations
+- **Title:** The Numerical Solution of Differential-Algebraic Systems by Runge-Kutta Methods
+- **Authors:** E. Hairer, C. Lubich, M. Roche
+- **Book series:** Numerical Analysis, Lecture Notes in Mathematics 1409
+- **Pages:** 111-151
+- **DOI:** 10.1007/BFb0090793
+- **Use in paper:** Index-1 DAE background, order conditions, and stiff accuracy framing.
+
+### Roche (1988) — Rosenbrock methods for DAEs
+- **Title:** Rosenbrock Methods for Differential Algebraic Equations
+- **Author:** M. Roche
+- **Journal:** Numerische Mathematik, 52(1), 45-64
+- **URL:** https://eudml.org/doc/133193
+- **Use in paper:** Direct DAE Rosenbrock treatment relevant to MICM's mass-matrix row replacement.
+
+### Hairer & Wanner (1996) — ODEs II (stiff + DAE reference)
 - **Title:** Solving Ordinary Differential Equations II: Stiff and Differential-Algebraic Problems
-- **Authors:** Ernst Hairer, Gerhard Wanner
-- **Publisher:** Springer Verlag Series in Comput. Math., Vol. 14
+- **Authors:** E. Hairer, G. Wanner
+- **Series:** Springer Series in Computational Mathematics, Vol. 14
 - **DOI:** 10.1007/978-3-662-09947-6
-- **BibTeX key:** `ODEsII`
-- **Note:** Foundational reference for Rosenbrock DAE methods; source of the 6-stage DAE Rosenbrock parameters used in MICM.
+- **Use in paper:** Canonical reference for stiff DAE integrators and high-order Rosenbrock-W variants.
 
-## Benchmark Papers
+## Atmospheric Chemistry Solver Benchmarks
 
-### Sandu et al. (1997) — Benchmark I: Implicit vs Explicit
-- **Title:** Benchmarking Stiff ODE Solvers for Atmospheric Chemistry Problems I: Implicit vs Explicit
-- **Authors:** A. Sandu, J.G. Verwer, M. Van Loon, G.R. Carmichael, F.A. Potra, D. Dabdub, J.H. Seinfeld
-- **Journal:** Atmospheric Environment, 31(19), 3151–3166
+### Sandu et al. (1997) — Benchmark I
+- **Title:** Benchmarking stiff ODE solvers for atmospheric chemistry problems I: Implicit versus explicit
+- **Journal:** Atmospheric Environment, 31(19), 3151-3166
 - **DOI:** 10.1016/S1352-2310(97)00059-9
-- **BibTeX key:** `SanduI`
-- **Key findings:** Compared 5 explicit and 4 implicit solvers on 7 benchmark problems. Sparse RODAS (Rosenbrock) performed best in the 1% error region. TWOSTEP was best explicit solver for gas-phase problems.
+- **Use in paper:** Comparative runtime/accuracy framing against legacy atmospheric chemistry solvers.
 
-### Sandu et al. (1997) — Benchmark II: Rosenbrock Solvers
-- **Title:** Benchmarking Stiff ODE Solvers for Atmospheric Chemistry Problems II: Rosenbrock Solvers
-- **Authors:** A. Sandu, J.G. Verwer, J.G. Blom, E.J. Spee, G.R. Carmichael, F.A. Potra
-- **Journal:** Atmospheric Environment, 31(20), 3459–3472
+### Sandu et al. (1997) — Benchmark II
+- **Title:** Benchmarking stiff ODE solvers for atmospheric chemistry problems II: Rosenbrock solvers
+- **Journal:** Atmospheric Environment, 31(20), 3459-3472
 - **DOI:** 10.1016/S1352-2310(97)83212-8
-- **BibTeX key:** `SanduII`
-- **Key findings:** Tested 8 Rosenbrock-type solvers (rodas, Ros4, rodas3, ros3, etc.). rodas3 and ros3 specially developed for air quality applications. Emphasizes sparse matrix techniques.
+- **Use in paper:** Rosenbrock-family performance context; useful for method choice discussion.
 
-## Other References
+### Liao et al. (2025) — Modern KPP Rosenbrock step-size control
+- **Title:** Reducing time-step-size control errors in Rosenbrock solvers for atmospheric chemistry through improved treatment of linear systems
+- **Journal:** Geoscientific Model Development, 18, 4273-4288
+- **DOI:** 10.5194/gmd-18-4273-2025
+- **Use in paper:** Current best-practice issues in adaptive Rosenbrock workflows (linear-system treatment).
 
-### Butcher (1972) — Algebraic Theory of Integration Methods
-- **Title:** An Algebraic Theory of Integration Methods
-- **Author:** J.C. Butcher
-- **Journal:** Mathematics of Computation, 26(117), 79–106
-- **URL:** http://www.jstor.org/stable/2004720
-- **BibTeX key:** `4d1669a5-f006-3a25-bbb2-7621f96df836`
+## MICM/MUSICA Project Sources
 
-### Blanes et al. (2009) — Magnus Expansion
-- **Title:** The Magnus Expansion and Some of Its Applications
-- **Authors:** S. Blanes, F. Casas, J.A. Oteo, J. Ros
-- **Journal:** Physics Reports, 470(5), 151–238
-- **DOI:** 10.1016/j.physrep.2008.11.001
+### MICM repository
+- **URL:** https://github.com/NCAR/micm
+- **Use in paper:** Code-level source of truth for solver architecture, constraints, and tests.
 
-### Bacsi & Kocsis (2023) — Exact Quadratic DE Solutions
-- **Title:** Exactly Solvable Quadratic Differential Equation Systems Through Generalized Inversion
-- **Authors:** Adam Bacsi, Albert Kocsis
-- **Journal:** Qualitative Theory of Dynamical Systems, 22
-- **DOI:** 10.1007/s12346-023-00738-7
-- **BibTeX key:** `QDE`
+### MICM docs and citation guidance
+- **URL:** https://ncar.github.io/micm/
+- **Citation page URL:** https://ncar.github.io/micm/citing_and_bibliography/index.html
+- **Observed citation target:** Pfister et al. (2024), JAMES, DOI 10.1029/2024MS004581
+- **Use in paper:** Official project-recommended citation and documentation baseline.
+
+### MICM software DOI (concept + release)
+- **Concept DOI (all versions):** 10.5281/zenodo.7940162
+- **Latest observed release DOI during this sweep:** 10.5281/zenodo.14758889
+- **Landing page:** https://zenodo.org/records/14758889
+- **Use in paper:** Reproducibility anchor for software versioning and archived artifacts.
+
+## Implementation-Adjacent References
+
+### PETSc TSROSWSANDU3 documentation
+- **URL:** https://petsc.org/release/manualpages/TS/TSROSWSANDU3/
+- **Use in paper:** External confirmation of Sandu3-family Rosenbrock coefficients in an established solver stack.
+
+## To Verify Next (before manuscript submission)
+
+1. Exact MICM version/commit used for all paper figures and tables.
+2. Whether MICM's four-stage and six-stage DAE parameter sets map exactly to specific Hairer-Wanner tables.
+3. If MICM docs now provide direct BibTeX for the JAMES 2024 citation (pull into `.bib` verbatim).
