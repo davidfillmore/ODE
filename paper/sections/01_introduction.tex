@@ -5,6 +5,8 @@ Atmospheric chemistry integration is often stiff and can include algebraic struc
 
 This manuscript focuses on the MICM implementation and the DAE-specific design choices used in its solver stack \citep{micm_repo,micm_docs,pfister2024micm}.
 
+We use the notation introduced in \cref{sec:formulation}: a species state vector $c(t)\in\mathbb{R}^{N}$, algebraic residuals $g(c)=0$, and mass-matrix form $M\dot{c}=\widetilde{F}(c)$. Rosenbrock stages are denoted by $k^{(r)}$.
+
 \subsection{Paper Contributions}
 \begin{enumerate}[leftmargin=*]
   \item A precise DAE formulation of the MICM constrained chemistry solve.

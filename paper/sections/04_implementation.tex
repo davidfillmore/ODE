@@ -2,6 +2,7 @@
 \label{sec:implementation}
 
 This section documents the implementation path from solver build-time wiring to per-step runtime assembly in MICM \citep{micm_repo,micm_docs}.
+The symbols follow \cref{sec:formulation}: state $c$, mass matrix $M$, right-hand side $\widetilde{F}$, Jacobian $J=\partial\widetilde{F}/\partial c$, and Rosenbrock increments $k^{(r)}$.
 
 \subsection{Build-Time Pipeline}
 \begin{enumerate}[leftmargin=*]
@@ -15,9 +16,13 @@ This section documents the implementation path from solver build-time wiring to 
 \subsection{Runtime Stage Assembly}
 Per accepted or rejected step, MICM assembles:
 \begin{enumerate}[leftmargin=*]
-  \item Forcing vector from kinetics plus constraint residual rows.
-  \item Jacobian from kinetics plus row-replacement constraint Jacobians.
-  \item Rosenbrock stage linear systems using $\alpha\mathbf{M}-\mathbf{J}$.
+  \item Forcing vector $\widetilde{F}(c_n)$ from kinetics plus row-replacement constraint residuals $g(c_n)$.
+  \item Jacobian $J_n$ from kinetics plus row-replacement constraint Jacobian rows.
+  \item Rosenbrock stage systems
+  \[
+    (\alpha_r M - J_n)\,k^{(r)} = r^{(r)},
+  \]
+  with stage-dependent right-hand sides $r^{(r)}$ built from previously computed stages.
 \end{enumerate}
 
 \subsection{Implementation Notes to Expand}

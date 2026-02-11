@@ -1,28 +1,169 @@
-\section{MICM DAE Formulation}
+\section{Notation and Mathematical Formulation}
 \label{sec:formulation}
 
-\subsection{Constrained Chemistry System}
-Let $\mathbf{y}\in\mathbb{R}^{N}$ be the species state. MICM combines kinetic forcing and algebraic constraints in a species-sized state, using a diagonal mass matrix:
-\begin{equation}
-  \mathbf{M}\,\dot{\mathbf{y}} = \mathbf{F}(\mathbf{y}) =
-  \begin{cases}
-    f_i(\mathbf{y}) & \text{for ODE rows,} \\
-    g_i(\mathbf{y}) & \text{for algebraic rows.}
-  \end{cases}
-\end{equation}
-For ODE rows, $M_{ii}=1$, and for algebraic rows, $M_{ii}=0$.
+This section consolidates the notation and formulation used in the ODE wiki and maps it to the MICM DAE implementation.
 
-\subsection{Equilibrium Constraints}
-The currently implemented constraint class uses equilibrium residuals of the form
-\begin{equation}
-  g(\mathbf{y}) = K_{\mathrm{eq}} \prod_{r \in \mathcal{R}} y_r^{\nu_r}
-  - \prod_{p \in \mathcal{P}} y_p^{\nu_p}.
-\end{equation}
-Each constraint replaces one target species row in the assembled system.
+\subsection{Conventions and Symbols}
+We use:
+\begin{itemize}[leftmargin=*]
+  \item $N$: dimension of the differential state space.
+  \item $M$: number of algebraic constraints.
+  \item $t_n = t_0 + n h$: time grid with step size $h$, $n=0,\dots,T$.
+  \item $S$: number of Rosenbrock stages, with stage indices $r,s$.
+  \item $i,j,k$: component indices for state variables.
+\end{itemize}
 
-\subsection{Linear Systems in Rosenbrock Stages}
-At each stage, MICM solves sparse linear systems of the form
+\subsection{ODE Forms}
+For state $x_i(t)$, $i=1,\dots,N$, the general nonlinear ODE form is
 \begin{equation}
-  \left(\alpha \mathbf{M} - \mathbf{J}\right)\mathbf{k}^{(s)} = \mathbf{r}^{(s)},
+  \frac{d x_i}{dt} = F_i\!\left(x_j,t\right).
 \end{equation}
-where $\mathbf{J}=\partial \mathbf{F}/\partial \mathbf{y}$. Section~\ref{sec:implementation} maps this mathematical form to implementation details.
+
+A linear specialization is
+\begin{equation}
+  \frac{d x_i}{dt} = s_i(t) + \sum_{j=1}^{N} L_{ij}(t)\,x_j.
+\end{equation}
+
+A quadratic specialization is
+\begin{equation}
+  \frac{d x_i}{dt}
+  = s_i(t)
+  + \sum_{j=1}^{N} L_{ij}(t)\,x_j
+  + \frac{1}{2}\sum_{j=1}^{N}\sum_{k=1}^{N}Q_{ijk}(t)\,x_j x_k,
+\end{equation}
+with symmetry
+\begin{equation}
+  Q_{ikj}=Q_{ijk}.
+\end{equation}
+
+\subsection{DAE Extension}
+Introduce algebraic variables $y_j(t)$, $j=1,\dots,M$, with constraints
+\begin{equation}
+  G_k(x_i,y_j)=0,\qquad k=1,\dots,M.
+\end{equation}
+
+Equivalently, define
+\begin{equation}
+  u=\begin{bmatrix}x\\y\end{bmatrix},
+\end{equation}
+and write an index-1 mass-matrix form
+\begin{equation}
+  \mathcal{M}\,\dot{u}=\mathcal{H}(u,t),\qquad
+  \mathcal{M}=\begin{bmatrix}I&0\\0&0\end{bmatrix}.
+\end{equation}
+
+\subsection{Rosenbrock Stage Equations}
+The stage sum is
+\begin{equation}
+  x_i(t_{n+1}) = x_i(t_n) + \sum_{r=1}^{S} b_r\,k_i^{(r)}.
+\end{equation}
+
+Define the Jacobian at step $n$:
+\begin{equation}
+  J_{ij}(t_n)=\frac{\partial F_i}{\partial x_j}(t_n).
+\end{equation}
+
+The component Rosenbrock stage equation is
+\begin{align}
+  \sum_{j=1}^{N}\left(\delta_{ij}-h\gamma J_{ij}(t_n)\right)k_j^{(r)}
+  &=
+  h\,F_i\!\left(
+  x_i(t_n)+\sum_{s=1}^{r-1}a_{rs}k_i^{(s)},\,
+  t_n+c_r h\right)
+  \nonumber\\
+  &\quad+
+  h\sum_{j=1}^{N}J_{ij}(t_n)\sum_{s=1}^{r-1}\gamma_{rs}k_j^{(s)}.
+\end{align}
+
+Runge-Kutta is recovered as a special case when
+\begin{equation}
+  \gamma=0,\qquad \gamma_{rs}=0,
+\end{equation}
+which gives
+\begin{equation}
+  k_i^{(r)}=
+  h\,F_i\!\left(
+  x_i(t_n)+\sum_{s=1}^{r-1}a_{rs}k_i^{(s)},\,
+  t_n+c_r h\right).
+\end{equation}
+
+\subsection{Matrix and Block Forms}
+The matrix stage update is
+\begin{equation}
+  [x]_{n+1}=[x]_n+\sum_{r=1}^{S}b_r[k]^{(r)},
+\end{equation}
+with
+\begin{equation}
+  \left(I-h\gamma[F_x]_n\right)[k]^{(r)}
+  =
+  h[F]_n^{(r-1)}
+  +
+  h[F_x]_n\sum_{s=1}^{r-1}\gamma_{rs}[k]^{(s)},
+\end{equation}
+and stage evaluation
+\begin{equation}
+  [F]_n^{(r-1)}
+  =
+  [F]\!\left(
+  [x]_n+\sum_{s=1}^{r-1}a_{rs}[k]^{(s)},
+  t_n+c_r h\right).
+\end{equation}
+
+For coupled differential and algebraic variables:
+\begin{equation}
+  \begin{bmatrix}x\\y\end{bmatrix}_{n+1}
+  =
+  \begin{bmatrix}x\\y\end{bmatrix}_{n}
+  +
+  \sum_{r=1}^{S}b_r
+  \begin{bmatrix}k\\l\end{bmatrix}^{(r)},
+\end{equation}
+and
+\begin{align}
+  &
+  \begin{bmatrix}
+    I-h\gamma F_x & -h\gamma F_y \\
+    -h\gamma G_x & -h\gamma G_y
+  \end{bmatrix}_{n}
+  \begin{bmatrix}k\\l\end{bmatrix}^{(r)}
+  \nonumber\\
+  &\qquad =
+  h\begin{bmatrix}F\\G\end{bmatrix}_{n}^{(r-1)}
+  +
+  h\begin{bmatrix}
+    F_x & F_y \\
+    G_x & G_y
+  \end{bmatrix}_{n}
+  \sum_{s=1}^{r-1}\gamma_{rs}
+  \begin{bmatrix}k\\l\end{bmatrix}^{(s)},
+\end{align}
+with
+\begin{equation}
+  \begin{bmatrix}F\\G\end{bmatrix}_{n}^{(r-1)}
+  =
+  \begin{bmatrix}F\\G\end{bmatrix}
+  \left(
+  \begin{bmatrix}x\\y\end{bmatrix}_{n}
+  +
+  \sum_{s=1}^{r-1}a_{rs}
+  \begin{bmatrix}k\\l\end{bmatrix}^{(s)},
+  t_n+c_r h
+  \right).
+\end{equation}
+
+\subsection{Mapping to MICM}
+MICM stores a species-sized state vector (no appended unknowns) and enforces constraints by row replacement in the assembled system \citep{micm_repo,micm_docs}.
+The implementation form is
+\begin{equation}
+  M\,\dot{c}=\widetilde{F}(c),
+\end{equation}
+where $M_{ii}=1$ for differential rows and $M_{ii}=0$ for algebraic rows. For the equilibrium constraint class,
+\begin{equation}
+  g(c)=K_{\mathrm{eq}}\prod_{r\in\mathcal{R}} c_r^{\nu_r}
+  -\prod_{p\in\mathcal{P}} c_p^{\nu_p}.
+\end{equation}
+Rosenbrock stages then solve sparse systems of the form
+\begin{equation}
+  \left(\alpha M-J\right)k^{(r)}=r^{(r)},
+\end{equation}
+where $J=\partial\widetilde{F}/\partial c$. Section~\ref{sec:implementation} gives the implementation details.

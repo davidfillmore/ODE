@@ -5,7 +5,8 @@ This section will report accuracy-cost behavior for selected stiff atmospheric c
 
 \subsection{Protocol}
 \begin{itemize}[leftmargin=*]
-  \item Define reference solutions, norms, and tolerances.
+  \item Define reference solutions $c_{\mathrm{ref}}(t)$, state error norms $\|c-c_{\mathrm{ref}}\|$, and tolerances.
+  \item Record algebraic residual norms $\|g(c_n)\|$ alongside state error.
   \item Record wall-clock time, accepted steps, rejected steps, and linear solves.
   \item Report compiler, platform, and MICM version metadata.
 \end{itemize}
@@ -19,7 +20,7 @@ This section will report accuracy-cost behavior for selected stiff atmospheric c
 
 \subsection{Planned Outputs}
 \begin{itemize}[leftmargin=*]
-  \item Error-vs-cost curves for 3-, 4-, and 6-stage parameter sets.
+  \item Error-vs-cost curves for 3-, 4-, and 6-stage parameter sets using $c$-error and $g(c)$ residual targets.
   \item Solver-state diagnostics (accept/reject patterns and stiffness indicators).
   \item Reproducibility table with artifact identifiers.
 \end{itemize}

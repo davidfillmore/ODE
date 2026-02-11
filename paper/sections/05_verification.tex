@@ -1,12 +1,12 @@
 \section{Verification and Test Evidence}
 \label{sec:verification}
 
-Current MICM tests cover constraint residual assembly, Jacobian row replacement, reordered-state execution, stiff coupling, and selected conservation checks for equilibrium constraints.
+Current MICM tests cover constraint residual assembly for $g(c)$, Jacobian row replacement in $J$, reordered-state execution, stiff coupling, and selected conservation checks for equilibrium constraints.
 
 \subsection{Existing Coverage}
 \begin{itemize}[leftmargin=*]
   \item Unit tests for `ConstraintSet` API and sparsity behavior.
-  \item Unit tests for Rosenbrock error normalization with constrained rows.
+  \item Unit tests for Rosenbrock error normalization with constrained ($M_{ii}=0$) rows excluded as intended.
   \item Integration tests for multi-stage DAE parameter sets and coupled constraints.
 \end{itemize}
 
@@ -18,4 +18,4 @@ Current MICM tests cover constraint residual assembly, Jacobian row replacement,
 \end{itemize}
 
 \subsection{Planned Additions for This Paper}
-Benchmark additions are aligned with atmospheric chemistry precedent \citep{sandu1997implicit,sandu1997rosenbrock} and modern Rosenbrock controller analysis \citep{liao2025}.
+Benchmark additions are aligned with atmospheric chemistry precedent \citep{sandu1997implicit,sandu1997rosenbrock} and modern Rosenbrock controller analysis \citep{liao2025}. We will report both state error metrics (for $c$) and algebraic residual metrics (for $g(c)$).

@@ -14,7 +14,7 @@
 - **Authors:** E. Hairer, C. Lubich, M. Roche
 - **Book series:** Numerical Analysis, Lecture Notes in Mathematics 1409
 - **Pages:** 111-151
-- **DOI:** 10.1007/BFb0090793
+- **DOI:** 10.1007/BFb0093947
 - **Use in paper:** Index-1 DAE background, order conditions, and stiff accuracy framing.
 
 ### Roche (1988) — Rosenbrock methods for DAEs
@@ -60,13 +60,13 @@
 ### MICM docs and citation guidance
 - **URL:** https://ncar.github.io/micm/
 - **Citation page URL:** https://ncar.github.io/micm/citing_and_bibliography/index.html
-- **Observed citation target:** Pfister et al. (2024), JAMES, DOI 10.1029/2024MS004581
+- **Observed citation target (current docs):** MICM Zenodo citation DOI 10.5281/zenodo.8377912
 - **Use in paper:** Official project-recommended citation and documentation baseline.
 
 ### MICM software DOI (concept + release)
 - **Concept DOI (all versions):** 10.5281/zenodo.7940162
-- **Latest observed release DOI during this sweep:** 10.5281/zenodo.14758889
-- **Landing page:** https://zenodo.org/records/14758889
+- **Current citation DOI shown in MICM docs:** 10.5281/zenodo.8377912
+- **Landing page:** https://zenodo.org/records/8377912
 - **Use in paper:** Reproducibility anchor for software versioning and archived artifacts.
 
 ## Implementation-Adjacent References
@@ -79,4 +79,4 @@
 
 1. Exact MICM version/commit used for all paper figures and tables.
 2. Whether MICM's four-stage and six-stage DAE parameter sets map exactly to specific Hairer-Wanner tables.
-3. If MICM docs now provide direct BibTeX for the JAMES 2024 citation (pull into `.bib` verbatim).
+3. Pull the MICM docs citation BibTeX block verbatim into `paper/refs.bib` before submission freeze.
